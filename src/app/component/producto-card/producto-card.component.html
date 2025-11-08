@@ -1,0 +1,10 @@
+<div class="producto-card">
+  <div class="producto-imagen">
+    <img [src]="producto.imagenUrl" [alt]="producto.nombre" />
+  </div>
+  <div class="producto-info">
+    <h3 class="producto-nombre">{{ producto.nombre }}</h3>
+    <p class="producto-precio">${{ producto.precio | number:'1.2-2' }}</p>
+  </div>
+</div>
+

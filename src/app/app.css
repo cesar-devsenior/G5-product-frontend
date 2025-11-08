@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+    color: blue;
+}
+
+p {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+main {
+    background-color: aquamarine;
+    height: 100vh;
+}

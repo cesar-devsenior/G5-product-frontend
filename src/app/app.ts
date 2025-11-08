@@ -1,12 +1,16 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ProductoListComponent } from './component/producto-list/producto-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ProductoListComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('product-frontend');
+  nombre: string = "Cesar Augusto Diaz";
+
+  cambiarNombre(): void {
+    this.nombre = "Camilo Mendoza";
+  }
 }
