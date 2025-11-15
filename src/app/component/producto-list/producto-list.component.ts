@@ -3,6 +3,7 @@ import { ProductoService } from '../../service/producto.service';
 import { Producto } from '../../model/producto';
 import { ProductoCardComponent } from '../producto-card/producto-card.component';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-producto-list',
@@ -14,10 +15,14 @@ import { CommonModule } from '@angular/common';
 export class ProductoListComponent implements OnInit {
   productos: Producto[] = [];
 
-  constructor(private productoService: ProductoService) { }
+  constructor(private productoService: ProductoService, private router: Router) { }
 
   ngOnInit(): void {
     this.productos = this.productoService.getProductos();
+  }
+
+  crearProducto(): void {
+    this.router.navigateByUrl("/nuevo");
   }
 }
 

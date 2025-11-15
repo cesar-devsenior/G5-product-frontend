@@ -1,5 +1,8 @@
 <div class="producto-list-container">
   <h2>Lista de Productos</h2>
+  <div class="productos-acciones">
+    <button class="accion-button" (click)="crearProducto()">Nuevo</button>
+  </div>
   <div class="productos-grid">
     @for (producto of productos; track producto.id) {
       <app-producto-card [producto]="producto"></app-producto-card>

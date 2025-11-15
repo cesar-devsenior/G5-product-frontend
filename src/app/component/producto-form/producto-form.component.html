@@ -1,0 +1,51 @@
+<form [formGroup]="productoForm" (ngSubmit)="onSubmit()" class="producto-form">
+  <h2>Nuevo Producto</h2>
+
+  <div class="form-group">
+    <label for="nombre">Nombre del Producto</label>
+    <input type="text" id="nombre" formControlName="nombre" class="form-control"
+      [class.error]="nombre?.invalid && nombre?.touched" placeholder="Ej: Laptop Dell XPS 15" />
+    @if (nombre?.invalid && nombre?.touched) {
+    <span class="error-message">
+      El nombre del producto es obligatorio
+    </span>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="precio">Precio</label>
+    <input type="number" id="precio" formControlName="precio" class="form-control"
+      [class.error]="precio?.invalid && precio?.touched" placeholder="Ej: 1299.99" step="0.01" min="0.01" />
+    @if (precio?.invalid && precio?.touched) {
+    <span class="error-message">
+      @if (precio?.errors?.['required']) {
+      El precio es obligatorio
+      } @else if (precio?.errors?.['min']) {
+      El precio debe ser mayor a 0
+      }
+    </span>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="imagenUrl">URL de la Imagen</label>
+    <input type="url" id="imagenUrl" formControlName="imagenUrl" class="form-control"
+      [class.error]="imagenUrl?.invalid && imagenUrl?.touched" placeholder="Ej: https://picsum.photos/300/200" />
+    @if (imagenUrl?.invalid && imagenUrl?.touched) {
+    <span class="error-message">
+      La URL de la imagen es obligatoria
+    </span>
+    }
+  </div>
+
+  <div class="productos-acciones">
+    <button type="submit" class="submit-button" [disabled]="productoForm.invalid">
+      Guardar Producto
+    </button>
+    <button type="button" class="cancel-button" routerLink="/productos">
+      Cancelar la creacion
+    </button>
+
+
+  </div>
+</form>
