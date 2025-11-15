@@ -5,6 +5,7 @@
   <div class="producto-info">
     <h3 class="producto-nombre">{{ producto.nombre }}</h3>
     <p class="producto-precio">${{ producto.precio | number:'1.2-2' }}</p>
+    <button class="eliminar-button" (click)="onEliminar()">Eliminar</button>
   </div>
 </div>
 

@@ -3,10 +3,14 @@
   <div class="productos-acciones">
     <button class="accion-button" (click)="crearProducto()">Nuevo</button>
   </div>
-  <div class="productos-grid">
-    @for (producto of productos; track producto.id) {
-      <app-producto-card [producto]="producto"></app-producto-card>
-    }
-  </div>
+  @if (productos.length === 0) {
+    <h3>No hay productos disponibles.</h3>
+  } @else {
+    <div class="productos-grid">
+      @for (producto of productos; track producto.id) {
+        <app-producto-card [producto]="producto" (eliminarProducto)="onEliminarProducto($event)"></app-producto-card>
+      }
+    </div>
+  }
 </div>
 

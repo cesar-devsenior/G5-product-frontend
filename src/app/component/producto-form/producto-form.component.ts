@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Producto } from '../../model/producto';
 import { RouterLink } from "@angular/router";
+import { ProductoService } from '../../service/producto.service';
 
 @Component({
   selector: 'app-producto-form',
@@ -14,7 +15,7 @@ import { RouterLink } from "@angular/router";
 export class ProductoFormComponent {
   productoForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private productoService: ProductoService) {
     this.productoForm = this.fb.group({
       nombre: ['', [Validators.required]],
       precio: ['', [Validators.required, Validators.min(0.01)]],
@@ -24,14 +25,23 @@ export class ProductoFormComponent {
 
   onSubmit(): void {
     if (this.productoForm.valid) {
-      const producto: Omit<Producto, 'id'> = {
+      const producto: Producto = {
         nombre: this.productoForm.value.nombre,
         precio: parseFloat(this.productoForm.value.precio),
         imagenUrl: this.productoForm.value.imagenUrl
       };
       console.log('Producto a guardar:', producto);
       // Aquí puedes agregar la lógica para guardar el producto
-      this.productoForm.reset();
+      this.productoService.createProducto(producto)
+        .subscribe({
+          next: (prod) => {
+            alert(`Se ha guardado el producto con el id: ${prod.id}`);
+            this.productoForm.reset();
+          },
+          error: () => {
+            console.error("Ocurrió un error al guardar el producto");
+          }
+        });
     } else {
       console.log('Formulario inválido');
     }

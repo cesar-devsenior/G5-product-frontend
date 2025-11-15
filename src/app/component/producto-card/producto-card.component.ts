@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Producto } from '../../model/producto';
 
@@ -11,5 +11,12 @@ import { Producto } from '../../model/producto';
 })
 export class ProductoCardComponent {
   @Input() producto!: Producto;
+  @Output() eliminarProducto = new EventEmitter<number>();
+
+  onEliminar(): void {
+    if (this.producto.id) {
+      this.eliminarProducto.emit(this.producto.id);
+    }
+  }
 }
 
